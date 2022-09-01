@@ -1,0 +1,49 @@
+.header{
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  padding: .5rem 0;
+  min-height: 5rem;
+  &__container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__logo{
+    flex-shrink: 0;
+    max-width: 3.5rem;
+    margin-right: 5rem;
+  }
+  &__logout{
+    background: transparent;
+    outline: none;
+    border: none;
+    flex-shrink: 0;
+    max-width: 3.5rem;
+    margin-left: 5rem;
+  }
+  &__nav{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    &-link{
+      font-size: 1.4rem;
+      line-height: 120%;
+      font-weight: 600;
+      margin-left: 1rem;
+      &:first-child{
+        margin: 0;
+      }
+      &:hover{
+        opacity: 1;
+      }
+      @media (min-width: 576px) {
+        font-size: 1.6rem;
+        margin-left: 1.5rem;
+      }
+    }
+  }
+}

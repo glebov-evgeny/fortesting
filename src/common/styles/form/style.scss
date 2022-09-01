@@ -1,0 +1,56 @@
+.form{
+  background: rgba(216, 216, 216, 0.4);
+  max-width: 30rem;
+  border-radius: 1rem;
+  border-top: .2rem solid #fff;
+  border-left: .2rem solid #fff;
+  box-shadow: .2rem .2rem  rgba(232, 232, 232, .8);
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 3rem 1rem 4rem;
+  backdrop-filter: blur(1rem);
+  &__box{
+    display: flex;
+    flex-direction: column;
+  }
+  &__item{
+    margin-bottom: 2rem;
+    &._short{
+      margin-bottom: 0;
+    }
+    &-name{
+      font-size: 1.4rem;
+      margin-bottom: .5rem;
+    }
+    &-input{
+      width: 100%;
+      min-height: 4rem;
+      border: .2rem solid #fff;
+      background: transparent;
+      outline: none;
+      border-radius: 1rem;
+      font-size: 1.6rem;
+      line-height: 120%;
+      color: #000;
+      padding: 0 1.5rem;
+      &.error{
+        border: .2rem solid #e34216;
+      }
+    }
+  }
+  &__button{
+    border-radius: 0.8rem;
+    &:hover{
+      color: #ffffff;
+      opacity: 1;
+    }
+  }
+  &__information{
+    margin: 1rem 0;
+    &-content{
+      text-align: center;
+      font-size: 1.2rem;
+      color: #e34216;
+    }
+  }
+}
