@@ -56,7 +56,7 @@ export function FormMain(props: FormProps){
 
     const handleRegistration: React.FormEventHandler<HTMLFormElement> = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log('регистрация')
+
         validateForm(formData)
         if(errorData.email && errorData.password){
             axios.post(`http://79.143.31.216/register?username=${formData.email}&password=${formData.password}`)
@@ -67,7 +67,7 @@ export function FormMain(props: FormProps){
                 }));
                 localStorage.setItem('username', res.data.username);
                 localStorage.setItem('password', formData.password);
-                navigate('/about');
+                navigate('/links');
             })
             .catch((error) => {
                 if (error.response.data.detail === `user with username='${formData.email}' already exists`){
@@ -85,28 +85,33 @@ export function FormMain(props: FormProps){
 
     const handleLogin: React.FormEventHandler<HTMLFormElement> = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log('логин')
-        if(errorData.email && errorData.password){
-            axios.post(`http://79.143.31.216/login?username=1%40mail.ru&password=${formData.password}`)
-                .then(res => {
-                    console.log(res)
-                    // dispatch(setUser({
-                    //     username:res.data.username
-                    // }));
-                    // localStorage.setItem('username', res.data.username);
-                    // navigate('/about');
-                })
-                .catch((error) => {
-                    if (error.response.data.detail === `user with username='${formData.email}' already exists`){
-                        setErrorData({...errorData, form: 'Email уже зарегистрирован'} )
-                    }
-                    else{
-                        console.error('Ошибка: ' + error.message)
-                    }
-                });
-        } else {
-            console.error('ошибка отправки формы')
-        }
+
+        fetch('http://79.143.31.216/login', {
+            method: 'POST',
+            headers: {
+                'accept': 'application/json'
+            },
+            body: new URLSearchParams({
+                'username': formData.email,
+                'password': formData.password
+            })
+        })
+        .then((res) => {
+            const bodyResponse = res.json()
+            if(res.status === 200){
+
+                localStorage.setItem('username', formData.email);
+                localStorage.setItem('password', formData.password);
+                navigate('/links');
+            }
+            else {
+                setErrorData({...errorData, form: 'Логин и пароль не совпадают'} )
+            }
+            return bodyResponse
+        })
+        .then(bodyResponse => {
+            localStorage.setItem('token', bodyResponse.access_token);
+        })
     };
 
     return (

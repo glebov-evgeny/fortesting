@@ -2,7 +2,7 @@ import {Route, Routes} from 'react-router-dom';
 import {Header} from './components/Header';
 // import {IntroPage} from './pages/IntroPage';
 import {LoginPage} from './pages/LoginPage';
-import {AboutPage} from './pages/AboutPage';
+import {LinksPage} from './pages/LinksPage';
 import {RegistrationPage} from './pages/RegistrationPage';
 
 
@@ -14,7 +14,7 @@ function App() {
                 <Routes>
                     <Route path='/' element={<LoginPage />} />
                     <Route path='/registration' element={<RegistrationPage />} />
-                    <Route path='/about' element={<AboutPage />} />
+                    <Route path='/links' element={<LinksPage />} />
                 </Routes>
             </main>
         </>
